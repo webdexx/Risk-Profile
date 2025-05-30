@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Assessment Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="#" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            <button class="nav-button"><i class="fas fa-play"></i> Start Assessment</button>
+        </div>
+    </nav>
+
+    <!-- Questions Section -->
+    <section class="questions-section">
+        <!-- Authentication Step -->
+        <div class="auth-container" id="authStep">
+            <h2>Enter Your Mobile Number</h2>
+            <form class="auth-form" id="mobileForm" autocomplete="off">
+                <div class="mobile-input">
+                    <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="Enter mobile number" maxlength="10" required>
+                </div>
+                <button type="submit" class="auth-button" id="sendOtpBtn">Send OTP</button>
+
+                <div class="otp-container" id="otpContainer">
+                    <div id="dummyOtp" style="margin-bottom:1rem;color:#0070ba;font-weight:bold;"></div>
+                    <div class="otp-input">
+                        <input type="text" name="otp1" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <input type="text" name="otp2" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <input type="text" name="otp3" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                        <input type="text" name="otp4" maxlength="1" pattern="[0-9]" inputmode="numeric">
+                    </div>
+                    <div class="otp-timer">
+                        OTP expires in <span id="otpTimer">60</span> seconds
+                    </div>
+                    <button type="button" class="auth-button" id="verifyOtpBtn">Verify OTP</button>
+                </div>
+                <div id="otpSuccessMessage"></div>
+            </form>
+        </div>
+        <div class="progress-container" id="progressStep" style="display:none;">
+            <canvas id="progressChart"></canvas>
+            <div class="progress-text">
+                <span id="progress-percentage">0%</span>
+                <span>Complete</span>
+            </div>
+        </div>
+        <div class="question-container" id="questionStep" style="display:none;">
+            <h2 id="question-text">Question 1</h2>
+            <div class="options">
+                <!-- Options will be populated by JavaScript -->
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn prev-btn" id="prevBtn">Previous</button>
+                <button class="nav-btn next-btn" id="nextBtn">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="results-container">
+            <h2>Your Risk Profile</h2>
+            <div id="results-content">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+            <div class="score-container">
+                <div class="score-item">
+                    <span class="score-label">Profile Type</span>
+                    <span id="profile-type" class="score-value">-</span>
+                </div>
+            </div>
+        </div>
+        <div class="chart-container">
+            <h3>Asset Allocation</h3>
+            <canvas id="resultsChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Suggestions Section -->
+    <section class="suggestions-section">
+        <h2>Investment Recommendations</h2>
+        <div class="table-container">
+            <table id="suggestions-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Recommendation</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table content will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 
